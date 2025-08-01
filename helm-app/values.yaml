@@ -1,6 +1,6 @@
 # Global settings
 global:
-  namespace: hello
+  namespace: default
 
 # Front application configuration
 front:
@@ -8,12 +8,16 @@ front:
   replicaCount: 1
   image:
     repository: docker.io/jeremydavis/helm-front
-    tag: 1.0-arm64
+    tag: "1.0-amd64"
     pullPolicy: Always
   service:
     type: ClusterIP
     port: 80
     targetPort: 8080
+  ingress:
+    enabled: true
+    path: /(/|$)(.*)
+    pathType: ImplementationSpecific
 
 # Back application configuration
 back:
@@ -21,12 +25,16 @@ back:
   replicaCount: 1
   image:
     repository: docker.io/jeremydavis/helm-back
-    tag: 1.0-arm64
+    tag: "1.0-amd64"
     pullPolicy: Always
   service:
     type: ClusterIP
     port: 80
     targetPort: 8080
+  ingress:
+    enabled: true
+    path: /(/|$)(.*)
+    pathType: ImplementationSpecific
 
 # Configuration map for application settings
 configMap:

@@ -4,19 +4,19 @@ metadata:
   name: {{ .Values.back.name }}
   labels:
     app.kubernetes.io/name: {{ .Values.back.name }}
-    app.kubernetes.io/version: {{ .Values.back.image.tag }}
+    app.kubernetes.io/version: "{{ .Values.back.image.tag }}"
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.back.replicaCount }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ .Values.back.name }}
-      app.kubernetes.io/version: {{ .Values.back.image.tag }}
+      app.kubernetes.io/version: "{{ .Values.back.image.tag }}"
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ .Values.back.name }}
-        app.kubernetes.io/version: {{ .Values.back.image.tag }}
+        app.kubernetes.io/version: "{{ .Values.back.image.tag }}"
         app.kubernetes.io/managed-by: {{ .Release.Service }}
     spec:
       containers:

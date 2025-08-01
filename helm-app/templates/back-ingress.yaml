@@ -1,0 +1,24 @@
+{{- if .Values.back.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.back.name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  labels:
+    app.kubernetes.io/name: {{ .Values.back.name }}
+    app.kubernetes.io/version: {{ .Values.back.image.tag | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: {{ .Values.back.name }}
+                port:
+                  name: http
+            path: {{ .Values.back.ingress.path }}
+            pathType: {{ .Values.back.ingress.pathType }}
+{{- end }}

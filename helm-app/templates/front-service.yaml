@@ -5,7 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: {{ .Values.front.name }}
     app.kubernetes.io/part-of: helm-app
-    app.kubernetes.io/version: {{ .Values.front.image.tag }}
+    app.kubernetes.io/version: "{{ .Values.front.image.tag }}"
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   type: {{ .Values.front.service.type }}
@@ -17,4 +17,4 @@ spec:
   selector:
     app.kubernetes.io/name: {{ .Values.front.name }}
     app.kubernetes.io/part-of: helm-app
-    app.kubernetes.io/version: {{ .Values.front.image.tag }}
+    app.kubernetes.io/version: "{{ .Values.front.image.tag }}"

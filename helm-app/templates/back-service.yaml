@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.back.name }}
   labels:
     app.kubernetes.io/name: {{ .Values.back.name }}
-    app.kubernetes.io/version: {{ .Values.back.image.tag }}
+    app.kubernetes.io/version: "{{ .Values.back.image.tag }}"
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   type: {{ .Values.back.service.type }}
@@ -15,4 +15,4 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: {{ .Values.back.name }}
-    app.kubernetes.io/version: {{ .Values.back.image.tag }}
+    app.kubernetes.io/version: "{{ .Values.back.image.tag }}"
