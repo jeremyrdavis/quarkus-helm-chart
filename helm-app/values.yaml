@@ -1,0 +1,35 @@
+# Global settings
+global:
+  namespace: hello
+
+# Front application configuration
+front:
+  name: helm-front
+  replicaCount: 1
+  image:
+    repository: docker.io/jeremydavis/helm-front
+    tag: 1.0-arm64
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8080
+
+# Back application configuration
+back:
+  name: helm-back
+  replicaCount: 1
+  image:
+    repository: docker.io/jeremydavis/helm-back
+    tag: 1.0-arm64
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8080
+
+# Configuration map for application settings
+configMap:
+  name: helm-app-config-map
+  data:
+    helm_back_api_url: http://helm-back:80

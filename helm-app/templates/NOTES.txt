@@ -1,0 +1,8 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+To access the front application, you can use:
+  kubectl port-forward svc/{{ .Values.front.name }} {{ .Values.front.service.port }}:{{ .Values.front.service.port }}
+
+Then access: http://localhost:{{ .Values.front.service.port }}

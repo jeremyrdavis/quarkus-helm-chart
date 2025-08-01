@@ -10,7 +10,7 @@ import java.util.Random;
 @Path("/hello")
 public class GreetingResource {
 
-    private final List<String> greetings = List.of(
+    private static final List<String> greetings = List.of(
         "Hello", // English
         "Hola", // Spanish
         "Bonjour", // French
@@ -24,5 +24,9 @@ public class GreetingResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return greetings.get(random.nextInt(greetings.size()));
+    }
+
+    public static List<String> getGreetings() {
+        return greetings;
     }
 }
