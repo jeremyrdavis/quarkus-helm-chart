@@ -16,7 +16,7 @@ front:
     targetPort: 8080
   ingress:
     enabled: true
-    path: /(/|$)(.*)
+    path: /front(/|$)(.*)
     pathType: ImplementationSpecific
 
 # Back application configuration
@@ -33,7 +33,7 @@ back:
     targetPort: 8080
   ingress:
     enabled: true
-    path: /(/|$)(.*)
+    path: /api(/|$)(.*)
     pathType: ImplementationSpecific
 
 # Configuration map for application settings

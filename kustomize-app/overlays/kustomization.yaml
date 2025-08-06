@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: helm-app-hello
+
+namespace: hello
+
+resources:
+- ../base
+
+configMapGenerator:
+- behavior: merge
+  literals:
+  - environment=hello
+  name: helm-app-config-map
+
+labels:
+- includeSelectors: true
+  pairs:
+    environment: hello
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 3
+  target:
+    kind: Deployment
+    name: helm-front
+- patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2
+  target:
+    kind: Deployment
+    name: helm-back
